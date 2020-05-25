@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core'
 
 import ScrollToBottom from 'react-scroll-to-bottom'
-import { Message } from '../../Message/Message'
+import { Message } from '../Message/Message'
 
 const useStyles = makeStyles({
   root: {

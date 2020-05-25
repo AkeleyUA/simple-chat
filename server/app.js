@@ -47,12 +47,16 @@ io.on('connection', (socket) => {
   })
 })
 
-if (process.NODE_ENV === 'prodaction') {
-  app.use('/', express.static(path.join(__dirname, 'client', 'build')))
-  app.get('*', res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')))
+
+if (process.env.NODE_ENV === 'production') {
+  console.log(1)
+  app.use('/', express.static(path.join('..', 'client', 'build')))
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
+  })
 }
 
-app.use(router)
+// app.use(router)
 
 server.listen(PORT, () => {
   console.log(`Server is up and running on port ${PORT}`)

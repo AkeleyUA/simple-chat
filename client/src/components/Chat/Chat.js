@@ -28,12 +28,10 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([])
   const [message, setMessage] = useState('')
 
-  const ENDPOINT = 'localhost:5000'
-
   useEffect(() => {
     const { name, room } = queryString.parse(location.search)
 
-    socket = io(ENDPOINT)
+    socket = io()
     socket.emit('join', { name, room }, () => { })
 
     setJoin({ name, room })
@@ -42,7 +40,7 @@ const Chat = ({ location }) => {
       socket.emit('disconnect')
       socket.off()
     }
-  }, [ENDPOINT, location])
+  }, [location])
 
   useEffect(() => {
     socket.on('message', (message) => {
